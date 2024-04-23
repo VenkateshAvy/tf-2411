@@ -58,3 +58,15 @@ resource "aws_route_table" "lms-db-rtb" {
     Name = "lms-db-rtb"
   }
 }
+resource "aws_route_table_association" "lms-web-assc" {
+  subnet_id      = aws_subnet.lms-web-subnet.id
+  route_table_id = aws_route_table.lms-web-rtb.id
+}
+resource "aws_route_table_association" "lms-api-assc" {
+  subnet_id      = aws_subnet.lms-api-subnet.id
+  route_table_id = aws_route_table.lms-web-rtb.id
+}
+resource "aws_route_table_association" "lms-db-assc" {
+  subnet_id      = aws_subnet.lms-db-subnet.id
+  route_table_id = aws_route_table.lms-db-rtb.id
+}

@@ -1,4 +1,4 @@
-resource "aws_instance" "web-server" {
+resource "aws_instance" "lms-web-server" {
   ami           = "ami-010b74bc1a8b29122"
   instance_type = "t2.micro"
   subnet_id = aws_subnet.lms-web-subnet.id
@@ -6,6 +6,6 @@ resource "aws_instance" "web-server" {
   vpc_security_group_ids = [aws_security_group.lms-web-sg.id]
   user_data = file("setup.sh")
   tags = {
-    Name = "web-server"
+    Name = "lms-web-server"
   }
 }

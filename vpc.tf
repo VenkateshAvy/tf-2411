@@ -32,3 +32,10 @@ resource "aws_subnet" "lms-db-subnet" {
     Name = "lms-db-subnet"
   }
 }
+resource "aws_internet_gateway" "lms-igw" {
+  vpc_id = aws_vpc.lms-vpc.id
+
+  tags = {
+    Name = "lms-igw"
+  }
+}

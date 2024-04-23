@@ -147,3 +147,18 @@ resource "aws_network_acl" "lms-db-nacl" {
     Name = "lms-db-nacl"
   }
 }
+
+resource "aws_network_acl_association" "lms-web-nacl-asscn" {
+  network_acl_id = aws_network_acl.lms-web-nacl.id
+  subnet_id      = aws_subnet.lms-web-subnet.id
+}
+
+resource "aws_network_acl_association" "lms-api-nacl-asscn" {
+  network_acl_id = aws_network_acl.lms-api-nacl.id
+  subnet_id      = aws_subnet.lms-api-subnet.id
+}
+
+resource "aws_network_acl_association" "lms-db-nacl-asscn" {
+  network_acl_id = aws_network_acl.lms-db-nacl.id
+  subnet_id      = aws_subnet.lms-db-subnet.id
+}

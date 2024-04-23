@@ -70,3 +70,80 @@ resource "aws_route_table_association" "lms-db-assc" {
   subnet_id      = aws_subnet.lms-db-subnet.id
   route_table_id = aws_route_table.lms-db-rtb.id
 }
+resource "aws_network_acl" "lms-web-nacl" {
+  vpc_id = aws_vpc.lms-vpc.id
+
+  egress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  tags = {
+    Name = "lms-web-nacl"
+  }
+}
+
+resource "aws_network_acl" "lms-api-nacl" {
+  vpc_id = aws_vpc.lms-vpc.id
+
+  egress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  tags = {
+    Name = "lms-api-nacl"
+  }
+}
+
+resource "aws_network_acl" "lms-db-nacl" {
+  vpc_id = aws_vpc.lms-vpc.id
+
+  egress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  ingress {
+    protocol   = "tcp"
+    rule_no    = 100
+    action     = "allow"
+    cidr_block = "0.0.0.0/0"
+    from_port  = 0
+    to_port    = 65535
+  }
+
+  tags = {
+    Name = "lms-db-nacl"
+  }
+}

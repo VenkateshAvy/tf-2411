@@ -39,3 +39,22 @@ resource "aws_internet_gateway" "lms-igw" {
     Name = "lms-igw"
   }
 }
+resource "aws_route_table" "lms-web-rtb" {
+  vpc_id = aws_vpc.lms-vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.lms-igw.id
+  }
+
+  tags = {
+    Name = "lms-web-rtb"
+  }
+}
+resource "aws_route_table" "lms-db-rtb" {
+  vpc_id = aws_vpc.lms-vpc.id
+
+  tags = {
+    Name = "lms-db-rtb"
+  }
+}
